@@ -1,0 +1,39 @@
+
+<div class="upload-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>JSON File Upload</mat-card-title>
+      <mat-card-subtitle>Upload JSON files (max 10KB)</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="file-input-container">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="fileInput.click()"
+          [disabled]="isUploading">
+          <mat-icon>cloud_upload</mat-icon>
+          Select JSON File
+        </button>
+        <input 
+          type="file" 
+          #fileInput 
+          (change)="onFileSelected($event)" 
+          accept=".json,application/json" 
+          style="display: none" />
+          
+        <span class="file-name" *ngIf="fileName">{{ fileName }}</span>
+      </div>
+      
+      <div class="progress-container" *ngIf="isUploading">
+        <mat-progress-bar 
+          mode="determinate" 
+          [value]="uploadProgress">
+        </mat-progress-bar>
+        <span class="upload-percentage">{{ uploadProgress }}%</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
